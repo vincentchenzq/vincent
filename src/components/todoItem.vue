@@ -13,21 +13,21 @@
         <li class="left width-half todo-button" :class="[state=='done'? 'todo-button-active':'']" @click="toggleStatus">完成</li>
       </ul>
       <div class="todo-content" v-if="state=='todo'">
-          <div class="label-out" v-for="(item,index) in todoList">
-            <label class="check-label todo-label check-todo">
+          <div class="label-out" v-for="(item,index) in todoList" track-by="id">
+            <label class="check-label todo-label check-todo" @click="todoClick(item)">
               <input type="checkbox" class="checkbox">
                 {{ item.content }}
             </label>
-            <div class="to-top" v-if="index!=0"></div>
+            <div class="to-top" v-if="index!=0" @click="toFirst(item)"></div>
           </div>
       </div>
       <div class="done-content" v-else>
         <div class="label-out" v-for="(item,index) in doneList">
           <label class="check-label todo-label checkdone">
-            <input type="checkbox" checked="checked" class="checkbox">
+            <input type="checkbox" v-bind:checked="true" class="checkbox" @click="doneClick(item)">
               {{ item.content }}
           </label>
-          <div class="todo-delete"></div>
+          <div class="todo-delete" @click="deleteTodos(item)"></div>
         </div>
       </div>
     </div>
@@ -48,7 +48,9 @@
       this.genTodos();
     },
     computed:{
-
+      todos(){
+        return getTodo();
+      }
     },
     methods:{
       clearInput(){
@@ -60,11 +62,42 @@
       addTodo(){
         addItem({
           content:this.input,
-          status:'todo'
+          status:'todo',
+          id:guid()
         });
         this.input = '';
+        this.genTodos();
+      },
+      //完成一个任务
+      todoClick(todo){
+        let todos = getTodo();
+        todos[getIndexById(todo.id)].status='done';
+        setTodo(todos);
+        this.genTodos();
+      },
+      // 将一个任务变成未完成
+      doneClick(todo){
+        let todos = getTodo();
+        todos[getIndexById(todo.id)].status='todo';
+        setTodo(todos);
+        this.genTodos();
+      },
+      //置顶功能
+      toFirst(todo){
+        let todos = getTodo();
+        setTodo(todos.splice(getIndexById(todo.id),1).concat(todos));
+        this.genTodos();
+      },
+      //删除一条已经完成的任务
+      deleteTodos(todo){
+        let todos = getTodo();
+        todos.splice(getIndexById(todo.id),1);
+        setTodo(todos);
+        this.genTodos();
       },
       genTodos(){
+        this.todoList = [];
+        this.doneList = [];
         getTodo().forEach((item) =>{
           if(item.status=='todo'){
             this.todoList.push(item)
@@ -76,20 +109,27 @@
     }
   }
 
-  function getItem(name){
-    let item;
-    getTodo().forEach(function(it){
-      if(it.content==name){
-        item = it;
-      }
-    });
-    return item;
-  }
-
   function addItem(item){
     let todo = getTodo();
     todo.push(item);
     setTodo(todo);
+  }
+
+  function getIndexById(id){
+    let index;
+    getTodo().forEach(function(todo,idx){
+      if(todo.id===id){
+        index = idx
+      }
+    });
+    return index;
+  }
+
+  function guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+    });
   }
 
   function getTodo(){
