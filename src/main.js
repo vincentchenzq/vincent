@@ -8,7 +8,7 @@ import router from './router'
 import store from '@/store'
 
 import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
-import '@/css/common.css'
+import '@/css/common.less'
 
 import utils from '@/common/utils/common.js'
 
