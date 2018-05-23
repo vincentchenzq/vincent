@@ -10,6 +10,8 @@ import store from '@/store'
 import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
 import '@/css/common.less'
 
+require('./mock/index')//此部分引入的是我们所编写的mockjs文档
+
 import utils from '@/common/utils/common.js'
 
 
@@ -17,8 +19,12 @@ Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
 
-utils.setCookie("userId", "Vincent123");
-utils.setCookie("userName", "Vincent");
+//调用后台接口将userId userName放在cookie里
+store.dispatch("GET_DATA","").then( data => {
+  utils.setCookie("userId", data.userId);
+  utils.setCookie("userName", data.userName);
+
+});
 
 
 /* eslint-disable no-new */
@@ -29,43 +35,12 @@ window.test = new Vue({
   template: '<App/>'
 }).$mount("#app");
 
-store.dispatch('getPermission', "").then(data => {
+//
+store.dispatch('GET_PERMISSION', "").then(data => {
   store.menus = data;
 });
 
-var menuList = [
-  {
-    name:"用户信息管理",
-    index:'1',
-    className:"fa fa-user-md",
-    children:[
-      {
-        path:"/HelloWorld",
-        name:"选项1"
-      },
-      {
-        path:"/hello",
-        name:"选项2"
-      },
-      {
-        path:'/imageModify',
-        name:"图片修改"
-      }
-    ]
-  },
-  {
-    name:"这真的是待办项",
-    index:'2',
-    className:"fa fa-bookmark",
-    children:[
-      {
-        path:"/todoItem",
-        name:"待办项"
-      }
+store.dispatch('GET_MENU_LIST', "").then(data => {
+  console.log(data);
+});
 
-    ]
-  }
-];
-setTimeout(function(){
-  store.commit('SET_MENU_LIST', menuList)
-},1000);

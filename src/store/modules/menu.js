@@ -27,11 +27,30 @@ const menu = {
   },
 
   actions:{
-    getPermission({ commit }, params){
+    GET_PERMISSION({ commit }, params){
       return new Promise((resolve, reject) => {
         Api.getPermission('').then((response) => {
           const menus = response.data;
           commit('SET_ROUTERS', menus);
+          resolve(response.data);
+        }).catch((error) =>{
+          reject(error);
+        });
+      });
+    },
+    GET_DATA({ commit }, params){
+      return new Promise((resolve, reject) => {
+        Api.getData('').then((response) => {
+          resolve(response.data);
+        }).catch((error) =>{
+          reject(error);
+        });
+      });
+    },
+    GET_MENU_LIST({ commit }, params){
+      return new Promise((resolve, reject) => {
+        Api.getMenuList('').then((response) => {
+          commit('SET_MENU_LIST', response.data);
           resolve(response.data);
         }).catch((error) =>{
           reject(error);

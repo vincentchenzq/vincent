@@ -19,8 +19,24 @@ function getPermission (params){
   // )
 }
 
+function getData(params){
+  return fetch({
+    url:'/api/data',
+    params:params || {}
+  });
+}
+
+function getMenuList(params){
+  return fetch({
+    url:'/api/menu-list',
+    params:params || {}
+  });
+}
+
 const Api = {
-  getPermission
+  getPermission,
+  getData,
+  getMenuList
 }
 
 export default  Api
