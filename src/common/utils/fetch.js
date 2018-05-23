@@ -17,9 +17,11 @@ fetch.interceptors.request.use(function (config) {
 
 // 添加一个响应拦截器
 fetch.interceptors.response.use(function (response) {
-  debugger;
-  // Do something with response data
-  return response;
+  if(response.status===200 && response.data && response.data.code==='888'){
+    return response.data;
+  }else{
+    return Promise.reject(response);
+  }
 }, function (error) {
   // Do something with response error
   return Promise.reject(error);
