@@ -7,13 +7,11 @@ import getters from './getters'
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  modules:{
-    menu
-  },
-  actions:{
-
-  },
-  getters
+    modules: {
+        menu
+    },
+    actions: {},
+    // getters
 });
 
 
