@@ -20,27 +20,27 @@ Vue.config.productionTip = false;
 Vue.use(ElementUI);
 
 //调用后台接口将userId userName放在cookie里
-store.dispatch("GET_DATA","").then( data => {
-  utils.setCookie("userId", data.userId);
-  utils.setCookie("userName", data.userName);
+store.dispatch("GET_DATA", "").then(data => {
+    utils.setCookie("userId", data.userId);
+    utils.setCookie("userName", data.userName);
 
 });
 
 
 /* eslint-disable no-new */
 window.test = new Vue({
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
+    router,
+    store,
+    components: {App},
+    template: '<App/>'
 }).$mount("#app");
 
 //
 store.dispatch('GET_PERMISSION', "").then(data => {
-  store.menus = data;
+    store.menus = data;
 });
 
 store.dispatch('GET_MENU_LIST', "").then(data => {
-  console.log(data);
+    console.log(data);
 });
 

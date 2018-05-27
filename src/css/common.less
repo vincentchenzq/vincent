@@ -1,73 +1,78 @@
-body{
-  padding:0;
-  margin:0;
+body {
+    padding: 0;
+    margin: 0;
 }
 
-.left{
-  float:left;
+.left {
+    float: left;
 }
 
-.right{
-  float:right;
-}
-.clearfix{
-  content:'';
-  display:block;
-  clear:both;
+.right {
+    float: right;
 }
 
-.pointer{
-  cursor: pointer;
+.clearfix {
+    content: '';
+    display: block;
+    clear: both;
 }
 
-.h40{
-  height:40px;
+.pointer {
+    cursor: pointer;
 }
 
-.lh40{
-  line-height:40px;
+.h40 {
+    height: 40px;
+}
+
+.lh40 {
+    line-height: 40px;
 }
 
 //生成 margin-top/margin-right/margin-bottom/margin-left:5px ,10px,15px....200px
-.loop-margin-top( @count )when( @count > 0 ){
-  .mt@{count}{
-    margin-top: ( 1px * @count );
-  }
-  .loop-margin-top((@count - 5));
+.loop-margin-top( @count ) when ( @count > 0 ) {
+    .mt@{count} {
+        margin-top: ( 1px * @count );
+    }
+    .loop-margin-top((@count - 5));
 }
+
 .loop-margin-top(200);
-.loop-margin-right( @count )when( @count > 0 ){
-  .mr@{count}{
-    margin-right: ( 1px * @count );
-  }
-  .loop-margin-right((@count - 5));
+.loop-margin-right( @count ) when ( @count > 0 ) {
+    .mr@{count} {
+        margin-right: ( 1px * @count );
+    }
+    .loop-margin-right((@count - 5));
 }
+
 .loop-margin-right(200);
-.loop-margin-bottom( @count )when( @count > 0 ){
-  .mb@{count}{
-    margin-bottom: ( 1px * @count );
-  }
-  .loop-margin-bottom((@count - 5));
+.loop-margin-bottom( @count ) when ( @count > 0 ) {
+    .mb@{count} {
+        margin-bottom: ( 1px * @count );
+    }
+    .loop-margin-bottom((@count - 5));
 }
+
 .loop-margin-bottom(200);
-.loop-margin-left( @count )when( @count > 0 ){
-  .ml@{count}{
-    margin-left: ( 1px * @count );
-  }
-  .loop-margin-left((@count - 5));
+.loop-margin-left( @count ) when ( @count > 0 ) {
+    .ml@{count} {
+        margin-left: ( 1px * @count );
+    }
+    .loop-margin-left((@count - 5));
 }
+
 .loop-margin-left(200);
 
-
-
-li{
-  list-style: none;
+li {
+    list-style: none;
 }
-[class^=fa]{
-  color:#3a88fd;
-  font-size: 25px;
+
+[class^=fa] {
+    color: #3a88fd;
+    font-size: 25px;
 }
-ul{
-  margin:0;
-  padding:0;
+
+ul {
+    margin: 0;
+    padding: 0;
 }
