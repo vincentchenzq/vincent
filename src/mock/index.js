@@ -38,6 +38,10 @@ Mock.mock('/api/menu-list', (req, res) => {
                     {
                         path: '/canvas',
                         name: '涂鸦'
+                    },
+                    {
+                        path: '/schart',
+                        name: '图表'
                     }
                 ]
             },

@@ -39,6 +39,11 @@ export default new Router({
             component: resolve => require(['@/components/doodle/canvas'], resolve)
         },
         {
+            path: '/schart',
+            name: '图表',
+            component: resolve => require(['@/components/schart'], resolve)
+        },
+        {
             path: '/todoItem',
             name: '待办项',
             component: resolve => require(['@/components/todoItem'], resolve)
