@@ -9,6 +9,7 @@ import store from '@/store'
 
 import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
 import '@/css/common.less'
+import 'animate.css'
 
 require('./mock/index')//此部分引入的是我们所编写的mockjs文档
 

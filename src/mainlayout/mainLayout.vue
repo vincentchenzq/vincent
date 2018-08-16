@@ -42,7 +42,14 @@
             </ul>
         </div>
         <div class="main mt20 mb20 ml20">
-            <router-view/>
+            <transition
+                name="custom-classes-transition"
+                enter-active-class="animated tada"
+                leave-active-class="animated bounceOutRight"
+            >
+                <router-view/>
+            </transition>
+
         </div>
     </div>
 </template>

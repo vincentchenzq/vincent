@@ -10,7 +10,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "animate.css": "^3.7.0",
     "axios": "^0.18.0",
+    "echarts": "^4.1.0",
     "element-ui": "^2.3.7",
     "iview": "^2.14.0-rc.1",
     "less": "^3.0.4",
